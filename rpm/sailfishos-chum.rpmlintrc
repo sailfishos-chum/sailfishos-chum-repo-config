@@ -36,6 +36,6 @@ addFilter('dangerous-command-in-%postun rm')
 # - This is by the current design of this source-repository's structure.
 #   IMO it makes sense to rename spec file to "sailfishos-chum.spec" and move
 #   the Repo Config RPM(s) out of the "main" repo to a new repo "sailfishos-chum".
-addFilter('invalid-spec-name')
-setBadness('invalid-spec-name', 0)
-
+#   DONE as of 2023-02-19, hence "commenting out":
+# addFilter('invalid-spec-name')
+# setBadness('invalid-spec-name', 0)
