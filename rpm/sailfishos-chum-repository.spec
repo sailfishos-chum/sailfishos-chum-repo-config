@@ -5,7 +5,7 @@ Version:        0.5.4
 Release:        1
 Group:          System/Console
 BuildArch:      noarch
-URL:            https://github.com/sailfishos-chum/main
+URL:            https://github.com/sailfishos-chum/sailfishos-chum
 # The "Source0:" line below requires that the value of %%{name} is also the
 # project name at GitHub and the value of %%{version} is also the name of a
 # correspondingly set git-tag.
