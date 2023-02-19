@@ -1,6 +1,6 @@
 Summary:        SSU configuration for the SailfishOS:Chum community repository
 License:        MIT
-Name:           sailfishos-chum
+Name:           sailfishos-chum-repo-config
 Version:        0.5.4
 Release:        1
 Group:          System/Console
@@ -16,8 +16,12 @@ Source99:       %{name}.rpmlintrc
 Requires:       ssu
 Requires(post): ssu
 Requires(postun): ssu
+Conflicts:      sailfishos-chum-repo-config-testing
+Obsoletes:      sailfishos-chum-repo-config-testing
 Conflicts:      sailfishos-chum-testing
 Obsoletes:      sailfishos-chum-testing
+Conflicts:      sailfishos-chum
+Obsoletes:      sailfishos-chum
 Conflicts:      sailfishos-chum-gui
 Conflicts:      sailfishos-chum-gui-installer
 Provides:       sailfishos-chum-repository
@@ -62,8 +66,12 @@ BuildArch:      noarch
 Requires:       ssu
 Requires(post): ssu
 Requires(postun): ssu
+Conflicts:      sailfishos-chum-repo-config
+Obsoletes:      sailfishos-chum-repo-config
 Conflicts:      sailfishos-chum
 Obsoletes:      sailfishos-chum
+Conflicts:      sailfishos-chum-testing
+Obsoletes:      sailfishos-chum-testing
 Conflicts:      sailfishos-chum-gui
 Conflicts:      sailfishos-chum-gui-installer
 Provides:       sailfishos-chum-repository
