@@ -50,7 +50,7 @@ Categories:
 DeveloperName: SailfishOS:Chum community
 Custom:
   Repo: %{url}
-Icon: %{url}/raw/main/.icons/%{name}.svg
+Icon: %{url}/raw/main/.icons/sailfishos-chum.svg
 Url:
   Homepage: https://openrepos.net/content/olf/sailfishoschum-repo-config-rpm
   Help: %{url}/issues
@@ -102,7 +102,7 @@ Categories:
 DeveloperName: SailfishOS:Chum community
 Custom:
   Repo: %{url}
-Icon: %{url}/raw/main/.icons/%{name}.svg
+Icon: %{url}/raw/main/.icons/sailfishos-chum.svg
 Url:
   Homepage: https://openrepos.net/content/olf/sailfishoschumtesting-repo-config-rpm
   Help: %{url}/issues
@@ -111,7 +111,7 @@ Url:
 
 
 %define _binary_payload w6.gzdio
-%define _source_payload w2.gzdio
+%define _source_payload w6.gzdio
 
 %prep
 %setup -q
