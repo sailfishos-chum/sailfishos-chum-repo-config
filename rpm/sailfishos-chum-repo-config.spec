@@ -1,7 +1,7 @@
 Summary:        SSU configuration for the SailfishOS:Chum community repository
 License:        MIT
 Name:           sailfishos-chum-repo-config
-Version:        0.6.0
+Version:        0.6.1
 Release:        1
 Group:          System/Console
 BuildArch:      noarch
