@@ -39,7 +39,7 @@ Hence you might rather install the sailfishos-chum-gui RPM (e.g., via the
 sailfishos-chum-gui-installer RPM), instead of the sailfishos-chum RPM.
 
 %if 0%{?_chum}
-PackageName: SailfishOS:Chum repository configuration RPM
+Title: SailfishOS:Chum repository configuration RPM
 Type: generic
 Categories:
  - System
@@ -50,8 +50,8 @@ Categories:
 DeveloperName: SailfishOS:Chum community
 Custom:
   Repo: %{url}
-Icon: %{url}/raw/main/.icons/sailfishos-chum.svg
-Url:
+PackageIcon: %{url}/raw/main/.icons/sailfishos-chum.svg
+Links:
   Homepage: https://openrepos.net/content/olf/sailfishoschum-repo-config-rpm
   Help: %{url}/issues
   Bugtracker: %{url}/issues
