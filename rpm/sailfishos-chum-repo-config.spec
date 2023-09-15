@@ -1,7 +1,7 @@
 Summary:        SSU configuration for the SailfishOS:Chum community repository
 License:        MIT
 Name:           sailfishos-chum-repo-config
-Version:        0.6.3
+Version:        0.6.4
 Release:        1
 # The Group tag should comprise one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
