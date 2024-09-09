@@ -178,8 +178,8 @@ sailfish_version="$(echo "$VERSION_ID" | cut -s -f 1-3 -d '.' | tr -d '.')"
 if echo "$sailfish_version" | grep -q '^[0-9][0-9][0-9][0-9]*$'
 then
   if [ "$sailfish_version" -lt 460 ]
-  then ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum/%%(release)_%%(arch)/'
-  else ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum/%%(releaseMajorMinor)_%%(arch)/'
+  then ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/%%(release)_%%(arch)/'
+  else ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/%%(releaseMajorMinor)_%%(arch)/'
   fi
 # Should be enhanced to proper debug output, also writing to systemd-journal:
 else echo "Error: VERSION_ID=$VERSION_ID => sailfish_version=$sailfish_version"
