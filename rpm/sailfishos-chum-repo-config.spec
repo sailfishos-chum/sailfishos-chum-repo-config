@@ -9,7 +9,7 @@ Group:          Software Management/Package Manager
 BuildArch:      noarch
 URL:            https://github.com/sailfishos-chum/%{name}
 Vendor:         chum
-# Note that the git-tag format for releases must be `%%{release}/%%{version}`:
+# Note that the git-tag format for release versions must be `%%{release}/%%{version}`:
 Source0:        %{url}/archive/%{release}/%{version}/%{name}-%{version}.tar.gz
 # Note that the rpmlintrc file shall be named so according to
 # https://en.opensuse.org/openSUSE:Packaging_checks#Building_Packages_in_spite_of_errors
