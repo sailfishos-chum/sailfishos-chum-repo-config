@@ -9,7 +9,7 @@ Group:          Software Management/Package Manager
 BuildArch:      noarch
 URL:            https://github.com/sailfishos-chum/%{name}
 Vendor:         chum
-# Note that the git-tag format for releases must be `%%{release}/%%{version}`:
+# Note that the git-tag format for release versions must be `%%{release}/%%{version}`:
 Source0:        %{url}/archive/%{release}/%{version}/%{name}-%{version}.tar.gz
 # Note that the rpmlintrc file shall be named so according to
 # https://en.opensuse.org/openSUSE:Packaging_checks#Building_Packages_in_spite_of_errors
@@ -17,6 +17,10 @@ Source99:       %{name}.rpmlintrc
 Requires:       ssu
 Requires(post): ssu
 Requires(postun): ssu
+# The oldest SailfishOS release which SailfishOS:Chum supports, because it is the
+# oldest useable DoD-repo at https://build.sailfishos.org/project/subprojects/sailfishos
+Requires:       sailfish-version >= 3.1.0
+# Provide (anti-)dependencies to sibling packages:
 Conflicts:      sailfishos-chum-repo-config-testing
 Obsoletes:      sailfishos-chum-repo-config-testing
 Conflicts:      sailfishos-chum-testing
@@ -67,6 +71,10 @@ BuildArch:      noarch
 Requires:       ssu
 Requires(post): ssu
 Requires(postun): ssu
+# The oldest SailfishOS release which SailfishOS:Chum supports, because it is the
+# oldest useable DoD-repo at https://build.sailfishos.org/project/subprojects/sailfishos
+Requires:       sailfish-version >= 3.1.0
+# Provide (anti-)dependencies to sibling packages:
 Conflicts:      sailfishos-chum-repo-config
 Obsoletes:      sailfishos-chum-repo-config
 Conflicts:      sailfishos-chum
@@ -129,7 +137,7 @@ Url:
 %post
 # The %%post scriptlet is deliberately run when installing and updating.
 # Add sailfishos-chum repository configuration, depending on the installed
-# SailfishOS release (3.1.0 is the lowest supported, see line 62):
+# SailfishOS release (3.1.0 is the lowest supported, see lines 22 and 76):
 source %{_sysconfdir}/os-release
 # Three equivalent variants, but the sed-based ones have additional, ugly
 # backslashed quoting of all backslashes, curly braces and brackets (likely
@@ -170,8 +178,8 @@ sailfish_version="$(echo "$VERSION_ID" | cut -s -f 1-3 -d '.' | tr -d '.')"
 if echo "$sailfish_version" | grep -q '^[0-9][0-9][0-9][0-9]*$'
 then
   if [ "$sailfish_version" -lt 460 ]
-  then ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum/%%(release)_%%(arch)/'
-  else ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum/%%(releaseMajorMinor)_%%(arch)/'
+  then ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/%%(release)_%%(arch)/'
+  else ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/%%(releaseMajorMinor)_%%(arch)/'
   fi
 # Should be enhanced to proper debug output, also writing to systemd-journal:
 else echo "Error: VERSION_ID=$VERSION_ID => sailfish_version=$sailfish_version"
