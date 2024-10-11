@@ -188,7 +188,8 @@ ssu ur
 exit 0
 
 %postun
-if [ "$1" = 0 ]  # Removal
+if [ "$1" = 0 ]
+# Removal
 then
   ssu rr sailfishos-chum
   rm -f /var/cache/ssu/features.ini
@@ -197,7 +198,8 @@ fi
 exit 0
 
 %postun testing
-if [ "$1" = 0 ]  # Removal
+if [ "$1" = 0 ]
+# Removal
 then
   ssu rr sailfishos-chum-testing
   rm -f /var/cache/ssu/features.ini
