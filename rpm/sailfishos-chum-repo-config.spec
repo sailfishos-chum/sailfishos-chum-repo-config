@@ -192,7 +192,6 @@ if [ "$1" = 0 ]
 # Removal
 then
   ssu rr sailfishos-chum
-  rm -f /var/cache/ssu/features.ini
   ssu ur
 fi
 exit 0
@@ -202,7 +201,6 @@ if [ "$1" = 0 ]
 # Removal
 then
   ssu rr sailfishos-chum-testing
-  rm -f /var/cache/ssu/features.ini
   ssu ur
 fi
 exit 0
