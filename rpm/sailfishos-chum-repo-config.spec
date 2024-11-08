@@ -137,7 +137,10 @@ Url:
 %post
 # The %%post scriptlet is deliberately run when installing and updating.
 # Add sailfishos-chum repository configuration, depending on the installed
-# SailfishOS release (3.1.0 is the lowest supported, see lines 22 and 76):
+# SailfishOS release (3.1.0 is the lowest supported, see lines 22 and 76).
+# Set empty default value failing the following tests, because VERSION_ID
+# should become overwritten by source'ing /etc/os-release:
+VERSION_ID=''
 source %{_sysconfdir}/os-release
 # Three equivalent variants, but the sed-based ones have additional, ugly
 # backslashed quoting of all backslashes, curly braces and brackets (likely
@@ -159,32 +162,31 @@ source %{_sysconfdir}/os-release
 # might be advisable, when using it inside a %%define statement's `%%()` ).
 sailfish_version="$(echo "$VERSION_ID" | cut -s -f 1-3 -d '.' | tr -d '.')"
 # Must be an all numerical string of at least three digits:
-if echo "$sailfish_version" | grep -q '^[0-9][0-9][0-9][0-9]*$'
-then
-  if [ "$sailfish_version" -lt 460 ]
-  then ssu ar sailfishos-chum 'https://repo.sailfishos.org/obs/sailfishos:/chum/%%(release)_%%(arch)/'
-  else ssu ar sailfishos-chum 'https://repo.sailfishos.org/obs/sailfishos:/chum/%%(releaseMajorMinor)_%%(arch)/'
+if ! echo "$sailfish_version" | grep -q '^[0-9][0-9][0-9][0-9]*$'
+then echo "Error: VERSION_ID=$VERSION_ID => sailfish_version=$sailfish_version" >&2
+else
+  if [ "$sailfish_version" -ge 460 ]
+  then ssu ar sailfishos-chum 'https://repo.sailfishos.org/obs/sailfishos:/chum/%%(releaseMajorMinor)_%%(arch)/'
+  else ssu ar sailfishos-chum 'https://repo.sailfishos.org/obs/sailfishos:/chum/%%(release)_%%(arch)/'
   fi
-# Should be enhanced to proper debug output, also writing to systemd-journal:
-else echo "Error: VERSION_ID=$VERSION_ID => sailfish_version=$sailfish_version" >&2
+  ssu ur
 fi
-ssu ur
 exit 0
 
 %post testing
+VERSION_ID=''
 source %{_sysconfdir}/os-release
 sailfish_version="$(echo "$VERSION_ID" | cut -s -f 1-3 -d '.' | tr -d '.')"
 # Must be an all numerical string of at least three digits:
-if echo "$sailfish_version" | grep -q '^[0-9][0-9][0-9][0-9]*$'
-then
-  if [ "$sailfish_version" -lt 460 ]
-  then ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/%%(release)_%%(arch)/'
-  else ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/%%(releaseMajorMinor)_%%(arch)/'
+if ! echo "$sailfish_version" | grep -q '^[0-9][0-9][0-9][0-9]*$'
+then echo "Error: VERSION_ID=$VERSION_ID => sailfish_version=$sailfish_version" >&2
+else
+  if [ "$sailfish_version" -ge 460 ]
+  then ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/%%(releaseMajorMinor)_%%(arch)/'
+  else ssu ar sailfishos-chum-testing 'https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/%%(release)_%%(arch)/'
   fi
-# Should be enhanced to proper debug output, also writing to systemd-journal:
-else echo "Error: VERSION_ID=$VERSION_ID => sailfish_version=$sailfish_version" >&2
+  ssu ur
 fi
-ssu ur
 exit 0
 
 %postun
